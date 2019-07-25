@@ -2,10 +2,13 @@ import React from 'react';
 import './Toolbar.css';
 import '../SideDrawer/DrawerToggleButton'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
+import {Link} from 'react-router-dom'
 
 
-const Toolbar = props => (
+const Toolbar = (props) => {
     
+    var url = props.user ? `/user/${props.user._id}/profile` : ''
+    return(
     <header  className='toolbar'>
         <nav className='toolbar__navigation'>
             <div>
@@ -17,12 +20,13 @@ const Toolbar = props => (
             <div className='toolbar__navigation-items'>
                 <ul>
                     <li><a href="/">Products</a></li>
-                    <li><a href="/">User</a></li>
+                    <li><Link to={url}>Profile</Link></li>
                 </ul>
             </div>
+            <button onClick={props.handleLogOut}>Log Out</button>
         </nav>
     </header>
-    )
+    )}
 
 
 export default Toolbar;

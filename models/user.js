@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
         require: [true, 'You must enter a email'],
         minlength: [5, 'Email must be between 5 and 99 characters'],
         maxlength: [99, 'Email must be between 5 and 99 characters']
-    }
+    },
+    favList: [{type: mongoose.Schema.Types.ObjectId, ref:'FavList'}]
 });
 
 userSchema.set('toObject',{
@@ -27,7 +28,8 @@ userSchema.set('toObject',{
         let returnJson = {
             _id: ret._id,
             email: ret.email,
-            name: ret.name
+            name: ret.name,
+            favs: ret.favs
         }
         return returnJson;
     }

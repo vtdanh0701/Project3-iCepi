@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom'
 
 class Signup extends React.Component{
     constructor(props){
@@ -37,6 +38,7 @@ class Signup extends React.Component{
             } else {
                 localStorage.setItem('mernToken', res.data.token)
                 this.props.liftToken(res.data)
+                this.props.history.push('/')
             }
         }).catch(err => {
             this.setState({
@@ -73,4 +75,4 @@ class Signup extends React.Component{
     }
 }
 
-export default Signup;
+export default withRouter(Signup);

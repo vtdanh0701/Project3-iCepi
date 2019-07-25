@@ -2,16 +2,19 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Login from './auth/Login';
 import Signup from './auth/Signup';
-import Home from './components/Home';
+import Home from './Routes/Home';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom';
+import Landing from './Routes/Landing'
 import Toolbar from './components/Toolbar/Toolbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import BackDrop from './components/BackDrop/BackDrop';
-
+import RecipeDetails from './components/RecipeDetails'
+import Profile from './auth/Profile'
 
 class App extends Component {
   constructor(props){
@@ -75,6 +78,7 @@ class App extends Component {
       user: null
     })
     localStorage.removeItem('mernToken');
+    console.log('loggout')
   }
 
   drawerToggleClickHandler = ()=>{
@@ -92,38 +96,42 @@ class App extends Component {
 
   render(){
     var user = this.state.user;
-    var contents 
+    var contents = (
+      <>
+      <Redirect to='/'/>
+      <Route exact path='/' render={()=><Landing liftToken={this.liftToken}/>}/>
+      </>
+    )
     var backdrop;
     if(user){
       contents = (
         <>
-        <p>Hello, {user.name}</p> <br/>
-        <button onClick={this.handleLogOut}>Log Out</button>
+        <Route exact path='/recipes/:id/details' render={(props)=><RecipeDetails {...props} checkForLocalToken={this.checkForLocalToken} user={this.state.user}/>}/>
+        <Route exact path='/' render={()=> <Home liftToken={this.liftToken} user={user}/>}/>
+        <Route exact path='/user/:id/profile' component={Profile}/>
         </>
       );
-    } else {
-      contents = (
-        <>
-        <Link to='/login'><button>Login</button></Link>
-        <Link to='/signup'><button>Signup</button></Link>
-        </>
-      )
-    }
+    } 
     if(this.state.sideDrawerOpen){
       backdrop= <BackDrop click={this.backdropClickHandler}/>
     }
     return(
       <Router>
-        <Route exact path='/login' render={()=><Login liftToken={this.liftToken}/>}/>
-        <Route exact path='/signup' render={()=><Signup liftToken={this.liftToken}/>}/>
-        <div style={{height: '100%'}}>
-          <Toolbar drawerToggleClickHandler={this.drawerToggleClickHandler}/>
-          <SideDrawer show={this.state.sideDrawerOpen}/>
-          {backdrop}
-          <main style={{marginTop: '64px'}}>
-          {contents}
-          </main>
-        </div>
+       
+        <header>
+          <div style={{height: '100%'}}>
+            <Toolbar user={this.state.user} handleLogOut={this.handleLogOut} liftToken={this.liftToken} drawerToggleClickHandler={this.drawerToggleClickHandler}/>
+            <SideDrawer show={this.state.sideDrawerOpen}/>
+            {backdrop}
+            <main style={{marginTop: '64px'}}>
+            </main>
+          </div>
+        </header>
+        <Route exact path='/login' render={()=><Login user={this.state.user} token={this.state.token} liftToken={this.liftToken}/>}></Route>
+        <Route exact path='/signup' render={()=><Signup liftToken={this.liftToken}/>}></Route>
+        <body>
+            {contents}  
+        </body>
       </Router>
     );
   }

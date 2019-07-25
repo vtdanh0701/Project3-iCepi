@@ -1,9 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import {
-    BrowserRouter as Router,
-    Route,
-    Link
+    Redirect,
+    withRouter
   } from 'react-router-dom';
 import Signup from './Signup';
   
@@ -14,7 +13,8 @@ class Login extends React.Component{
         this.state = {
             email: '',
             password: '',
-            message: ''
+            message: '',
+            redirect: false
         }
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -42,8 +42,13 @@ class Login extends React.Component{
                  message: res.data.message
              })   
             } else {
-                localStorage.setItem('mernToken', res.data.token)
-                this.props.liftToken(res.data)
+                localStorage.setItem('mernToken', res.data.token);
+                this.props.liftToken(res.data);
+                this.setState({
+                    redirect: true
+                })
+                this.props.history.push('/')
+                console.log('loggin'+this.state.redirect)
             }
         }).catch(err => {
             this.setState({
@@ -72,4 +77,4 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+export default withRouter(Login);
