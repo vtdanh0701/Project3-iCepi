@@ -15,7 +15,8 @@ router.post('/signup', (req, res) => {
             let user = new User({
                 name: req.body.name,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                address: req.body.address
             });
             user.save((err, user) => {
                 if (err){
@@ -33,9 +34,29 @@ router.post('/signup', (req, res) => {
     })
 })
 
+router.get('/user/:id/profile', (req,res) =>{
+    User.findById(req.params.id, (err,user)=>{
+        res.json(user)
+    })
+})
+
+router.put('/user/:id/profile', (req,res)=>{
+    User.findByIdAndUpdate(req.params.id,
+        { $set:
+            {
+                name: req.body.name,
+                email: req.body.email,
+                address: req.body.address
+            }}, function(err){
+                if(err) res.json(err)
+                return res.send("Updated")
+            })
+})
+
 // Route for login
 router.post('/login', (req, res) => {
     // Find user in db by email
+    
     User.findOne({email: req.body.email}, (err, user) => {
         if (!user) {
             // If there is no user, return error

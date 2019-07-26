@@ -22,6 +22,8 @@ const RecipesList = (props) => {
     }
     return(
     <div >
+        <button onClick={props.handlePrevious}>Previous</button>
+        <button onClick={props.handleNext}>Next</button>
         <div className='recipes'>
             {show}
         </div>

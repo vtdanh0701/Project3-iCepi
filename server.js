@@ -35,9 +35,9 @@ db.on('error', (err) => {
 
 // app.use('/auth/login', loginLimiter);
 // app.use('/auth/signup', signupLimiter);
-
+// expressJWT({secret: process.env.JWT_SECRET}),
 app.use('/auth', require('./routes/auth'));
-app.use('/api', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/api'))
+app.use('/api',expressJWT({secret: process.env.JWT_SECRET}),  require('./routes/api'));
 
 app.listen(process.env.PORT, () =>{
     console.log(`You are listening to port ${process.env.PORT}...`)

@@ -15,6 +15,7 @@ import SideDrawer from './components/SideDrawer/SideDrawer';
 import BackDrop from './components/BackDrop/BackDrop';
 import RecipeDetails from './components/RecipeDetails'
 import Profile from './auth/Profile'
+import UserFavList from './auth/UserFavList'
 
 class App extends Component {
   constructor(props){
@@ -106,9 +107,10 @@ class App extends Component {
     if(user){
       contents = (
         <>
-        <Route exact path='/recipes/:id/details' render={(props)=><RecipeDetails {...props} checkForLocalToken={this.checkForLocalToken} user={this.state.user}/>}/>
+        <Route exact path='/recipes/:id/details' render={(props)=><RecipeDetails {...props} checkForLocalToken={this.checkForLocalToken} token={this.state.token} user={this.state.user} />}/>
         <Route exact path='/' render={()=> <Home liftToken={this.liftToken} user={user}/>}/>
-        <Route exact path='/user/:id/profile' component={Profile}/>
+        <Route exact path='/user/:id/profile' render={(props) => <Profile {...props} liftToken={this.liftToken} user={user} checkForLocalToken={this.checkForLocalToken} token={this.state.token}/>}/>
+        <Route exact path='/user/:id/favlist' render={(props) => <UserFavList {...props}/>}/>
         </>
       );
     } 

@@ -34,13 +34,15 @@ class RecipeDetails extends React.Component {
     addToFav(e){
         e.preventDefault();
         const userId = this.props.user._id
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('mernToken');
         axios.post(`/api/user/${userId}/favList`, {
             title: this.state.result.title,
-            recipeId: this.state.result.id,
+            recipeId: parseInt(this.state.result.id),
             imgUrl: this.state.result.image
         })
         console.log('Added' + userId)
     }
+    
     render(){
         
         return(
@@ -50,6 +52,8 @@ class RecipeDetails extends React.Component {
             <button onClick={this.testMatch}>Test test</button>
             {this.state.result.title}<br/>
             {this.state.result.instructions}
+            {this.state.result.id}
+            {this.state.result.image}
             <img src={this.state.result.image} alt=""/> <br/>
             <button onClick={this.addToFav}>Add this to fave</button>
             
