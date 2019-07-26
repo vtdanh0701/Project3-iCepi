@@ -1,0 +1,37 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    background: url('../public/background2.jpg');
+    background-repeat: none;
+    background-size: cover
+}
+
+
+.loginbox{
+    width: 280px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 13px 0;
+}
+.loginbox h3{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+.textbox{
+    width: 100%;
+    overflow: hidden;
+    padding: 8px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid ;
+}
+input{
+    border-radius: 2px
+}
+

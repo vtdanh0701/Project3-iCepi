@@ -18,10 +18,11 @@ class RecipeDetails extends React.Component {
     
 
     getRecipeDetails(e) {
+        var api_key = process.env.REACT_APP_ICEPI_API_KEY
         const config = {
             headers: {
                 "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                "X-RapidAPI-Key": "8f5d4587b1msh929affc205b66f5p1690eajsn82dbdafc9d86"
+                "X-RapidAPI-Key": api_key
             }
         }
         const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${this.props.match.params.id}/information`

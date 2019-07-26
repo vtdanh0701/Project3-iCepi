@@ -1,0 +1,79 @@
+.landingbody{
+    background: url("../public/homebackground copy.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+span{
+    font-size: 15px
+}
+.wrapper{
+    display: flex;
+    justify-content: center
+}
+
+.slogan{
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 40px;
+}
+.loginbtn{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+.loginbtn{
+    background: #02a388;
+    color: white;
+    width: 240px;
+    height: 80px;
+    border: 1px solid white;
+    font-size: 25px;
+    border-radius: 4px;
+    transition: 0.6s;
+    overflow: hidden;
+}
+.loginbtn:focus{
+    outline: none;
+}
+.loginbtn:before{
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, .5);
+    width: 60px;
+    height: 100px;
+    left: 0;
+    top: 0;
+    opacity: 0.5s;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg)
+}
+.loginbtn:after{
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, .2);
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-100px) scaleX(-15deg);
+}
+.loginbtn:hover{
+    background: #02a388;
+    cursor: pointer;
+}
+.loginbtn:hover:before{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
+}
+.loginbtn:hover:after{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}

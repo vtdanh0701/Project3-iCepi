@@ -31,12 +31,10 @@ class Home extends React.Component { //component use state
 
     searchRecipeClick(e) {
         var api_key = process.env.REACT_APP_ICEPI_API_KEY
-        console.log(api_key)
-        // 8f5d4587b1msh929affc205b66f5p1690eajsn82dbdafc9d86
         const config = {
             headers: {
                 "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                "X-RapidAPI-Key": "8f5d4587b1msh929affc205b66f5p1690eajsn82dbdafc9d86"
+                "X-RapidAPI-Key": api_key
             }
         }
         const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=100&ranking=1&ignorePantry=false&ingredients=${this.state.search}`

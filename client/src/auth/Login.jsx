@@ -4,7 +4,7 @@ import {
     Redirect,
     withRouter
   } from 'react-router-dom';
-
+import './Login.css'
   
 
 class Login extends React.Component{
@@ -59,17 +59,25 @@ class Login extends React.Component{
     render(){
         return(
             <div className='login'>
-                <h3>Log into your account:</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="email" onChange={this.handleEmailChange} 
+                
+                <form className='loginbox' onSubmit={this.handleSubmit}>
+                <h3>Login</h3>
+                    <div className='textbox'>
+                        <i className="fas fa-user"></i>
+                        <input type="email" onChange={this.handleEmailChange} 
                                        value={this.state.email}
                                        name='email'
-                                       placeholder='Enter your email...'/> <br/>
-                    <input type="password" onChange={this.handlePasswordChange} 
+                                       placeholder='Enter your email...'/>
+                    </div>
+                    <div className='textbox'>
+                        <input type="password" onChange={this.handlePasswordChange} 
                                        value={this.state.password}
                                        name='password'
-                                       placeholder='Enter your password...'/> <br/>
-                    <input type="submit" value='Login'/>
+                                       placeholder='Enter your password...'/>
+                    </div>
+                    <div className='btn'>
+                         <input type="submit" value='Login'/>
+                    </div>
                 </form>
             </div>
         );

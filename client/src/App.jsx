@@ -16,6 +16,7 @@ import BackDrop from './components/BackDrop/BackDrop';
 import RecipeDetails from './components/RecipeDetails'
 import Profile from './auth/Profile'
 import UserFavList from './auth/UserFavList'
+import './App.css'
 
 class App extends Component {
   constructor(props){
@@ -98,10 +99,10 @@ class App extends Component {
   render(){
     var user = this.state.user;
     var contents = (
-      <>
-      <Redirect to='/'/>
-      <Route exact path='/' render={()=><Landing liftToken={this.liftToken}/>}/>
-      </>
+      <div >
+        <Redirect to='/'/>
+        <Route exact path='/' render={()=><Landing liftToken={this.liftToken}/>}/>
+      </div>
     )
     var backdrop;
     if(user){
@@ -119,21 +120,20 @@ class App extends Component {
     }
     return(
       <Router>
-       
-        <header>
+        <div>
           <div style={{height: '100%'}}>
             <Toolbar user={this.state.user} handleLogOut={this.handleLogOut} liftToken={this.liftToken} drawerToggleClickHandler={this.drawerToggleClickHandler}/>
-            <SideDrawer show={this.state.sideDrawerOpen}/>
+            <SideDrawer user={this.state.user} show={this.state.sideDrawerOpen}/>
             {backdrop}
-            <main style={{marginTop: '64px'}}>
+            <main style={{marginTop: '55px'}}>
             </main>
           </div>
-        </header>
+        </div>
         <Route exact path='/login' render={()=><Login user={this.state.user} token={this.state.token} liftToken={this.liftToken}/>}></Route>
         <Route exact path='/signup' render={()=><Signup liftToken={this.liftToken}/>}></Route>
-        <body>
-            {contents}  
-        </body>
+        
+        {contents}   
+       
       </Router>
     );
   }

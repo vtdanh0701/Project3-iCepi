@@ -1,6 +1,6 @@
 .side-drawer{
     height: 100%;
-    background: #0c0d0d;
+    background: black;
     box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
     position: fixed;
     top: 0;
@@ -9,7 +9,11 @@
     max-width: 400px;
     z-index: 200;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-out
+    transition: transform 0.3s ease-out;
+    color: white
+}
+hr{
+    color: white
 }
 .side-drawer.open{
     transform: translateX(0)
@@ -26,10 +30,14 @@
 }
 .side-drawer a{
     text-decoration: none;
-    color: #999999;
+    color: white;
+    font-size: 25px
 }
 
 .side-drawer a:hover,
 .side-drawer a:active{
     color: #02a388;
+}
+.crossline{
+    width: 100%;
 }
