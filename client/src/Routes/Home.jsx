@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import RecipesList from '../components/RecipesList';
 import dotenv from 'dotenv';
+import './Home.css'
 dotenv.config()
 
 class Home extends React.Component { //component use state
@@ -15,12 +16,13 @@ class Home extends React.Component { //component use state
             display: '',
             offset: 20,
             page: '',
-            pageCount: 1
+            pageCount: 1,
+            resultDisplay: 'none',
+            searchBarDisplay: 'block'
         }
         // this.onNavigateSearch = this.onNavigateSearch.bind(this);
         this.searchInputBox = this.searchInputBox.bind(this);
         this.searchRecipeClick = this.searchRecipeClick.bind(this);
-        this.searchVideoClick = this.searchVideoClick.bind(this);
         this.handleNext = this.handleNext.bind(this)
         this.handlePrevious = this.handlePrevious.bind(this)
     }
@@ -44,6 +46,8 @@ class Home extends React.Component { //component use state
                 recipes: result.data,
                 page: Math.round(result.data.length / 20),
                 offset: 20,
+                resultDisplay: 'block',
+                searchBarDisplay: 'none'
             })
 
         }).then(recipes => {
@@ -106,21 +110,41 @@ class Home extends React.Component { //component use state
 
 
     render() {
-        var url = `/user/${this.props.user._id}/profile`
+        var url = `/user/${this.props.user._id}/profile`;
+        const resultStyle={
+            display: this.state.resultDisplay
+        }
+        const searchBarStyle={
+            display: this.state.searchBarDisplay
+        }
         return (
-            <>
-            <div className='middle'>
-                <div className='search-elements'>
-                    <input onChange={this.searchInputBox} type="text" className='search-bar' placeholder='Enter a search keyword...'/>
+            <body>
+                <div className='container' style={searchBarStyle}>
+                    <div className='search-box'>
+                        <input onChange={this.searchInputBox} className='search-input' type="text" name='' required=' ' placeholder="Type to search"/>
+                        <a onClick={this.searchRecipeClick} className='search-btn' href='#'>
+                            <i className='fas fa-search'></i>
+                        </a>    
+                    </div>
+                </div>
+                <div style={resultStyle}>
+                    <RecipesList user={this.props.user} handlePrevious={this.handlePrevious} handleNext={this.handleNext} display={this.state.display}/>
                 </div>
 
-                <div>
-                    <button onClick={this.searchRecipeClick} className='submit-button'>Submit</button>
-                </div>
-                <Link to={url}>Profile</Link>
-                <RecipesList user={this.props.user} handlePrevious={this.handlePrevious} handleNext={this.handleNext} display={this.state.display}/>
-            </div>
-            </>
+            </body>
+            // <>
+            // <div className='middle'>
+            //     <div className='search-elements'>
+            //         <input onChange={this.searchInputBox} type="text" className='search-bar' placeholder='Enter a search keyword...'/>
+            //     </div>
+
+            //     <div>
+            //         <button onClick={this.searchRecipeClick} className='submit-button'>Submit</button>
+            //     </div>
+            //     <Link to={url}>Profile</Link>
+            //     <RecipesList user={this.props.user} handlePrevious={this.handlePrevious} handleNext={this.handleNext} display={this.state.display}/>
+            // </div>
+            // </>
         );
     }
 }

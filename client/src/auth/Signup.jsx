@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom'
+import './Form.css'
 
 class Signup extends React.Component{
     constructor(props){
@@ -9,7 +10,8 @@ class Signup extends React.Component{
             name: '',
             email: '',
             password: '',
-            message: ''
+            message: '',
+            address: '',
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +28,8 @@ class Signup extends React.Component{
         axios.post('/auth/signup', {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            address: this.state.address
         }).then( res => {
             if (res.data.type === 'error'){
                 this.setState({
@@ -49,28 +52,38 @@ class Signup extends React.Component{
 
     render(){
         return(
-            <div className='Signup'>
-                <h3>Create a new account :</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleInputChange} 
-                           type="text" 
-                           value={this.state.name} 
-                           name='name'
-                           placeholder='Enter your name...'/><br/>
-                    <input onChange={this.handleInputChange} 
-                           type="text" 
-                           value={this.state.email} 
-                           name='email'
-                           placeholder='Enter your email...'/><br/>
-                    <input onChange={this.handleInputChange} 
-                           type="password" 
-                           value={this.state.password} 
-                           name='password'
-                           placeholder='Enter your password...'/><br/>
-                    <input type="submit" value='Sign up!'/>       
-                </form>
-                <a href="/">Back</a>
-            </div>
+            <body>
+                <div className='box'>
+                    <h2>Sign Up</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className='inputbox'>
+                            <input onChange={this.handleInputChange} 
+                                   type="text" name='name' 
+                                   value={this.state.name} required=" "/>
+                            <label>Name</label>
+                        </div>
+                        <div className='inputbox'>
+                            <input onChange={this.handleInputChange} 
+                                   type="email" name='email' 
+                                   value={this.state.email} required=" "/>
+                            <label>Email</label>
+                        </div>
+                        <div className='inputbox'>
+                            <input onChange={this.handleInputChange} 
+                                   type="password" name='password' 
+                                   value={this.state.password} required=" "/>
+                            <label>Password</label>
+                        </div>
+                        <div className='inputbox'>
+                            <input onChange={this.handleInputChange} 
+                                   type="text" name='address' 
+                                   value={this.state.address} required=" "/>
+                            <label>Address</label>
+                        </div>
+                        <input type="submit" value="Sign Up"/>
+                    </form>
+                </div>
+            </body>
         );
     }
 }

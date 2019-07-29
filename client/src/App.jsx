@@ -108,8 +108,8 @@ class App extends Component {
     if(user){
       contents = (
         <>
-        <Route exact path='/recipes/:id/details' render={(props)=><RecipeDetails {...props} checkForLocalToken={this.checkForLocalToken} token={this.state.token} user={this.state.user} />}/>
         <Route exact path='/' render={()=> <Home liftToken={this.liftToken} user={user}/>}/>
+        <Route exact path='/recipes/:id/details' render={(props)=><RecipeDetails {...props} checkForLocalToken={this.checkForLocalToken} token={this.state.token} user={this.state.user} />}/>
         <Route exact path='/user/:id/profile' render={(props) => <Profile {...props} liftToken={this.liftToken} user={user} checkForLocalToken={this.checkForLocalToken} token={this.state.token}/>}/>
         <Route exact path='/user/:id/favlist' render={(props) => <UserFavList {...props}/>}/>
         </>

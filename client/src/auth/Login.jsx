@@ -4,8 +4,7 @@ import {
     Redirect,
     withRouter
   } from 'react-router-dom';
-import './Login.css'
-  
+import './Form.css'
 
 class Login extends React.Component{
     constructor(props){
@@ -58,28 +57,27 @@ class Login extends React.Component{
     }
     render(){
         return(
-            <div className='login'>
+            <body>
+                <div className='box'>
+                    <h2>Login</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className='inputbox'>
+                            <input onChange={this.handleEmailChange} 
+                                   type="text" name='email' 
+                                   value={this.state.email} required=" "/>
+                            <label>Email</label>
+                        </div>
+                        <div className='inputbox'>
+                            <input onChange={this.handlePasswordChange} 
+                                   type="password" name='password' 
+                                   value={this.state.password} required=" "/>
+                            <label>Password</label>
+                        </div>
+                        <input type="submit" value="Login"/>
+                    </form>
+                </div>
+            </body>
                 
-                <form className='loginbox' onSubmit={this.handleSubmit}>
-                <h3>Login</h3>
-                    <div className='textbox'>
-                        <i className="fas fa-user"></i>
-                        <input type="email" onChange={this.handleEmailChange} 
-                                       value={this.state.email}
-                                       name='email'
-                                       placeholder='Enter your email...'/>
-                    </div>
-                    <div className='textbox'>
-                        <input type="password" onChange={this.handlePasswordChange} 
-                                       value={this.state.password}
-                                       name='password'
-                                       placeholder='Enter your password...'/>
-                    </div>
-                    <div className='btn'>
-                         <input type="submit" value='Login'/>
-                    </div>
-                </form>
-            </div>
         );
     }
 }
