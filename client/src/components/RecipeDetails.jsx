@@ -42,19 +42,16 @@ class RecipeDetails extends React.Component {
             imgUrl: this.state.result.image
         })
         console.log('Added' + userId)
-    }
+    } 
     
     render(){
         
         return(
             <>
-            <h1>hello from details</h1>
-            <h1>{this.props.match.params.id}</h1>
-            <button onClick={this.testMatch}>Test test</button>
+            {this.state.result.image}
             {this.state.result.title}<br/>
             {this.state.result.instructions}
             {this.state.result.id}
-            {this.state.result.image}
             <img src={this.state.result.image} alt=""/> <br/>
             <button onClick={this.addToFav}>Add this to fave</button>
             

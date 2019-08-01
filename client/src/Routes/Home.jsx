@@ -120,6 +120,7 @@ class Home extends React.Component { //component use state
         return (
             <body>
                 <div className='container' style={searchBarStyle}>
+                    <h3>Click here to search for your recipe</h3>
                     <div className='search-box'>
                         <input onChange={this.searchInputBox} className='search-input' type="text" name='' required=' ' placeholder="Type to search"/>
                         <a onClick={this.searchRecipeClick} className='search-btn' href='#'>
@@ -128,23 +129,15 @@ class Home extends React.Component { //component use state
                     </div>
                 </div>
                 <div style={resultStyle}>
-                    <RecipesList user={this.props.user} handlePrevious={this.handlePrevious} handleNext={this.handleNext} display={this.state.display}/>
+                    <RecipesList user={this.props.user}
+                                 handlePrevious={this.handlePrevious}
+                                 searchRecipeClick={this.searchRecipeClick} 
+                                 handleNext={this.handleNext} 
+                                 display={this.state.display}
+                                 searchInputBox={this.searchInputBox}/>
                 </div>
 
             </body>
-            // <>
-            // <div className='middle'>
-            //     <div className='search-elements'>
-            //         <input onChange={this.searchInputBox} type="text" className='search-bar' placeholder='Enter a search keyword...'/>
-            //     </div>
-
-            //     <div>
-            //         <button onClick={this.searchRecipeClick} className='submit-button'>Submit</button>
-            //     </div>
-            //     <Link to={url}>Profile</Link>
-            //     <RecipesList user={this.props.user} handlePrevious={this.handlePrevious} handleNext={this.handleNext} display={this.state.display}/>
-            // </div>
-            // </>
         );
     }
 }
