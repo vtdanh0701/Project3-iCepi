@@ -133,7 +133,7 @@ class App extends Component {
         <Route exact path='/signup' render={()=><Signup liftToken={this.liftToken}/>}></Route>
         
         {contents}   
-       
+        
       </Router>
     );
   }

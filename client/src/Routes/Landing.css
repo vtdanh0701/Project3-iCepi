@@ -2,6 +2,7 @@
     background: url("../public/homebackground copy.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
 }
 span{
     font-size: 15px

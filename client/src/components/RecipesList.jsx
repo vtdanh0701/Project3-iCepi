@@ -15,7 +15,7 @@ const RecipesList = (props) => {
                 <div className='recipes__items'>
                     <Link className='recipe-link' to={url}>
                     {display[i].title} <br/>
-                    <img src= {display[i].image} alt="Recipe Photo"/>
+                    <img className='image' src= {display[i].image} alt="Recipe Photo"/>
                     </Link>
                  </div>
             
@@ -23,7 +23,7 @@ const RecipesList = (props) => {
         )
     }
     return(
-    <body>
+    <div className='listing-container'>
         <div className='new-search-box'>
                         <input onChange={props.searchInputBox} className='new-search-input' type="text" name='' required=' ' placeholder="Search for another recipe..."/>
                         <a onClick={props.searchRecipeClick} className='new-search-btn' href='#'>
@@ -40,7 +40,7 @@ const RecipesList = (props) => {
         <div className='recipe__container'>
             {show}
         </div>
-    </body>
+    </div>
     );
 }
 

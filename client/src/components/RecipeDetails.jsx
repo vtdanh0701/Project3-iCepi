@@ -1,11 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import './RecipeDetails.css'
 
 class RecipeDetails extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            result: ''
+            result: '',
+            ingredients: '',
+            favBtn: <i class="far fa-heart"></i>,
+            message: ''
         }
         this.getRecipeDetails = this.getRecipeDetails.bind(this)
         this.addToFav = this.addToFav.bind(this)
@@ -28,34 +32,110 @@ class RecipeDetails extends React.Component {
         const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${this.props.match.params.id}/information`
         axios.get(url, config).then(result => {
             this.setState({
-                result: result.data
+                result: result.data,
+                ingredients: result.data.extendedIngredients
             })
+            console.log(result.data.extendedIngredients)
         })
     }
     addToFav(e){
         e.preventDefault();
         const userId = this.props.user._id
+        
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('mernToken');
         axios.post(`/api/user/${userId}/favList`, {
             title: this.state.result.title,
             recipeId: parseInt(this.state.result.id),
             imgUrl: this.state.result.image
-        })
+        }).then(
+            this.setState({
+            favBtn: <i className="fas fa-heart"></i>,
+            message: <i class="fas fa-check"> Saved to Your List</i>
+        }))
         console.log('Added' + userId)
     } 
     
     render(){
+        var ingredients = this.state.ingredients;
+        var ingredientsList = []
         
+        for(var i=0; i < ingredients.length; i++){
+            var url = `https://spoonacular.com/cdn/ingredients_100x100/${ingredients[i].image}`
+            ingredientsList.push(
+                <div className='ingredient-detail'>
+                    <div className='ingredient-image'>
+                        <img src={url} alt=""/>
+                    </div>
+                    <div className='ingredient-amount'>{ingredients[i].amount} {ingredients[i].unit}</div>
+                    <div className='ingredient-name'>{ingredients[i].name}</div>
+                </div>
+                
+            )
+        }
         return(
-            <>
-            {this.state.result.image}
-            {this.state.result.title}<br/>
-            {this.state.result.instructions}
-            {this.state.result.id}
-            <img src={this.state.result.image} alt=""/> <br/>
-            <button onClick={this.addToFav}>Add this to fave</button>
-            
-            </>
+            <div className='detail-container'>
+                
+                <div className='fav-btn'>
+                    <button onClick={this.addToFav}>{this.state.favBtn}</button>
+                    <div>
+                        Save to Recipe List
+                    </div>
+                </div>
+
+                <div className='message'>
+                     {this.state.message}
+                </div>
+
+                <div className='header'>
+                    <h2>{this.state.result.title}</h2>
+                </div>
+
+                <div className='image-container'>
+                    <img className='image-detail' src={this.state.result.image} alt=""/>
+                </div>
+
+                <div className='info-container'>
+                    <div className='info'>
+                        <div className='icon-container'>
+                            <i class="fas fa-dollar-sign"></i> <br/>
+                        </div>
+                        <div>
+                            ${this.state.result.pricePerServing} per serving
+                        </div>
+                    </div>
+                    
+                    <div className='spacer-detail'>   
+                    </div>
+                    
+                    <div className='info'>
+                        <div className='icon-container'>
+                            <i class="far fa-clock"></i> <br/>
+                        </div>
+                        <div>
+                            Ready in {this.state.result.readyInMinutes} minutes
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div className='instruction'>
+                    <div className='instruction-header'>
+                        Instruction
+                    </div>
+                    <div className='instruction-detail'>
+                        {this.state.result.instructions}    
+                    </div>
+                </div>
+
+                <div className='ingredients'>
+                    <div className='ingredient-header'>
+                        Ingredients
+                    </div>
+                    {ingredientsList}
+                </div>
+
+
+            </div>
         )
     }
 }

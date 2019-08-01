@@ -1,3 +1,102 @@
-.details{
-    top: 200px
+.detail-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: -100;
+}
+.image-container{
+    display: flex;
+    height: 20%;
+    width: 100%;
+    justify-content: center;
+}
+.image-detail{
+    background-size: cover;
+    border: 5px solid rgba(0, 0, 0, .1)
+}
+.info-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.spacer-detail{
+    flex: 0.2
+}
+.icon-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.icon-container i{
+    font-size: 30px;
+    color: hotpink;
+}
+.instruction{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    padding: 10px;
+    background: rgba(0, 0, 0, .1);
+    width: 50%;
+}
+.instruction-header, .ingredient-header{
+    padding: 0;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.ingredients{
+    padding: 10px;
+    width: 50%;
+    margin-top: 20px;
+}
+.ingredient-image{
+    width: 25%;
+}
+.ingredient-detail{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+    border-bottom: 1px solid hotpink;
+}
+.ingredient-amount{
+    margin-left: 15px;
+    margin-right: 20px;
+    width: 20%;
+}
+.fav-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 20%;
+    margin-top: 10px;
+}
+.fav-btn button{
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: hotpink;
+}
+.fav-btn button:hover{
+    cursor: pointer;
+}
+.message{
+    position: relative;
+    right: 20%;
+    color: green;
 }

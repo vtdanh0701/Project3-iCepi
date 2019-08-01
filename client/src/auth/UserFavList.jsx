@@ -45,19 +45,16 @@ render(){
     var favLists = this.state.favLists
     var favItem = []
     for(var i = 0; i< favLists.length; i++){
-        var  url = `/recipes/${favLists[i].id}/details`
+        var  url = `/recipes/${favLists[i].recipeId}/details`
         favItem.push(
             <div>
                 <Link to={url}>
                     <div>
                         <div>{favLists[i].title}</div>
-                        <img src= {favLists[i].imgUrl} alt="Recipe Photo"/>
-                        
-
-
+                        <img src= {favLists[i].imgUrl} alt="Recipe Photo"/>     
                     </div>
                 </Link>
-                <div>{favLists[i]._id}</div>
+                <div>{favLists[i].recipeId}</div>
             <button onClick={this.deleteList} value={favLists[i]._id}>Delete</button>
             </div>
         )
