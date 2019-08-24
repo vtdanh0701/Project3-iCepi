@@ -26,7 +26,8 @@ const signupLimiter = new RateLimit({
 })
 
 
-mongoose.connect('mongodb://localhost/jwtAuth', {useNewUrlParser: true});
+// mongoose.connect('mongodb://localhost/jwtAuth', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
 db.once('open', () => console.log(`Connected to Mongo on ${db.host}:${db.port}`));
 db.on('error', (err) => {
