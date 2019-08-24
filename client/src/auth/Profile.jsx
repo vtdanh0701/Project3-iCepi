@@ -1,6 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import UserFavList from './UserFavList';
+import './Profile.css';
+import '../Animate.css';
+
 
 class Profile extends React.Component{
     constructor(props){
@@ -8,12 +12,15 @@ class Profile extends React.Component{
         this.state={
             name: this.props.user.name,
             email: this.props.user.email,
-            address: this.props.user.address
+            address: this.props.user.address,
+            display: 'none',
+            filter: 'about',
+            message: '',
         }
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleAddressChange = this.handleAddressChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     handleEmailChange(e){
@@ -44,40 +51,87 @@ class Profile extends React.Component{
                 this.setState({
                     name: res.data.name,
                     address: res.data.address,
-                    email: res.data.email
+                    message: <i class="fas fa-check"> <span>Successfully Updated !</span></i> 
                 })
                 console.log(res.data.name)
             })
         })
     }
+    handleFilter(filter){
+        console.log('Setting filter to: ', filter)
+        this.setState({
+            filter,
+            message: ''
+        })
+    }
 
     render(){
         var url = `/user/${this.props.user._id}/favlist`
-        return(
-            <>
-             <h1>Hello from profile</h1>
-             <h1>{this.props.user._id}</h1>
-             <Link to={url}>View your fave list</Link>
-             <h1>{this.props.user.name}</h1>
-             <h1>{this.props.user.email}</h1>
-             <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.handleNameChange} 
-                                       value={this.state.name}
-                                       name='name'
-                                       placeholder={this.state.name}/> <br/>
-                    <input type="email" onChange={this.handleEmailChange} 
-                                        value={this.state.email}
-                                        name='email'
-                                        placeholder={this.state.email}/> <br/>
-                    <input type="text" onChange={this.handleAddressChange} 
-                                       value={this.state.address}
-                                       name='address'
-                                       placeholder={this.state.address}/> <br/>
-                    
-                    
-                    <input type="submit" value='Update'/>
-                </form>
-        </>
+        var display = {
+            display: this.state.display
+        }
+        var content;
+        if(this.state.filter === 'about'){
+            content = 
+            <div className='profile-about animated fadeInLeft' >
+                <h1>Hello, {this.state.name}</h1>
+                <div className='node'>
+                    <h3>Name</h3>
+                    <div>{this.state.name}</div>
+                </div>
+                <div className='node'>
+                    <h3>Email</h3>
+                    <div>{this.state.email}</div>
+                </div>
+                <div className='node'>
+                    <h3>Address</h3>
+                    <div>{this.state.address}</div>
+                </div>
+            </div>
+        } else if(this.state.filter === 'edit'){
+            content =
+            
+            <div className='profile-edit animated fadeInLeft2 fast' >
+                    <h1>Edit Your Profile</h1>
+                    {this.state.message}
+                    <form onSubmit={this.handleSubmit}>
+                        <div className='inputbox'>
+                            <label><h3>Name</h3></label>
+                            <input onChange={this.handleNameChange} 
+                                   type="text" name='name' 
+                                   value={this.state.name} required=" "/>
+                        </div>
+                        <div className='inputbox'>
+                            <label><h3>Email</h3></label>
+                            <input onChange={this.handleEmailChange} 
+                                   type="email" name='email' 
+                                   value={this.state.email} required=" "/>
+                        </div>
+                        <div className='inputbox'>
+                            <label><h3>Address</h3></label>
+                            <input onChange={this.handleAddressChange} 
+                                   type="text" name='address' 
+                                   value={this.state.address} required=" "/>
+                        </div>
+                        <input className='profile-btn' type="submit" value="Update your Profile"/>
+                        
+                    </form>
+                </div>
+            
+        } else {
+            content = <div className='profile-fave animated fadeInLeftBig' ><UserFavList userId={this.props.match.params.id} user={this.props.user}/></div> 
+        }
+        return( 
+             <div className='profile-container'>
+                 <nav>
+                     <a className={this.state.filter === 'about' ? 'nav-link-active' :'nav-link'}  onClick={() => this.handleFilter('about')}>About</a>  
+                 
+                    <a className={this.state.filter === 'edit' ? 'nav-link-active':'nav-link'} onClick={() => this.handleFilter('edit')}>Edit</a> 
+                 
+                    <a className={this.state.filter === 'fave' ? 'nav-link-active':'nav-link'} onClick={() => this.handleFilter('fave')}>Your Recipes</a>
+                 </nav>
+                 {content}   
+             </div>
         )}
 }
 export default Profile

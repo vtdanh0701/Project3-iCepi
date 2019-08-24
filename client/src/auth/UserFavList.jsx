@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios'
 import { RSA_NO_PADDING } from 'constants';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import './FavList.css'
 
 class UserFavList extends React.Component{
 constructor(props){
@@ -15,25 +16,21 @@ constructor(props){
     this.deleteList = this.deleteList.bind(this)
 }
 getFavList(){
-    var url = `/api/user/${this.props.match.params.id}/favList`
+    var url = `/api/user/${this.props.userId}/favList`
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('mernToken');
     axios.get(url).then(res=>{
         this.setState({
             favLists: res.data,
-            hello: 'Bonjour'
+            
         })
-    }).then(res => {
-      console.log('hello' + this.state.favLists)    
     })
 }
 
 deleteList(e){
-    var url = `/api/user/${this.props.match.params.id}/favList/${e.target.value}`
+    var url = `/api/user/${this.props.userId}/favList/${e.target.value}`
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('mernToken');
     axios.delete(url).then(res=>{
-        this.setState({
-            favLists: res.data
-        })
+        this.getFavList();
     })
 }
 
@@ -44,29 +41,31 @@ componentDidMount(){
 render(){
     var favLists = this.state.favLists
     var favItem = []
-    for(var i = 0; i< favLists.length; i++){
-        var  url = `/recipes/${favLists[i].recipeId}/details`
-        favItem.push(
-            <div>
-                <Link to={url}>
-                    <div>
-                        <div>{favLists[i].title}</div>
-                        <img src= {favLists[i].imgUrl} alt="Recipe Photo"/>     
-                    </div>
-                </Link>
-                <div>{favLists[i].recipeId}</div>
-            <button onClick={this.deleteList} value={favLists[i]._id}>Delete</button>
-            </div>
-        )
+    if(favItem.length === 0){
+        favItem = "You don't have any recipe yet"
+    }else{
+        for(var i = 0; i< favLists.length; i++){
+            var  url = `/recipes/${favLists[i].recipeId}/details`
+            favItem.push(
+                <div className='fave-container'>
+                    <Link to={url}>
+                        <div className='fave-node'>
+                            <div className='title'>{favLists[i].title}</div>
+                            <img src= {favLists[i].imgUrl} alt="Recipe Photo"/>     
+                        </div>
+                    </Link>
+                    
+                    <button onClick={this.deleteList} value={favLists[i]._id}>Delete</button>
+                </div>
+            )
+        }
     }
+    
     return(
-        <>
-        <h1>Hello from fav list</h1>
-       
-        <h1>{this.props.match.params.id}</h1>
-        <h1>{this.state.hello} </h1>
-        {favItem}
-        </>
+        <div className='faveList'>
+        
+         {favItem}
+        </div>
     )
 }
     

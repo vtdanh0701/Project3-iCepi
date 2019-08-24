@@ -9,7 +9,7 @@ class RecipeDetails extends React.Component {
             result: '',
             ingredients: '',
             favBtn: <i class="far fa-heart"></i>,
-            message: ''
+            message: 'Save to Recipe List'
         }
         this.getRecipeDetails = this.getRecipeDetails.bind(this)
         this.addToFav = this.addToFav.bind(this)
@@ -49,8 +49,8 @@ class RecipeDetails extends React.Component {
             imgUrl: this.state.result.image
         }).then(
             this.setState({
-            favBtn: <i className="fas fa-heart"></i>,
-            message: <i class="fas fa-check"> Saved to Your List</i>
+            favBtn: <i class="fas fa-check"></i>,
+            message:  'Saved to Your List'
         }))
         console.log('Added' + userId)
     } 
@@ -78,13 +78,10 @@ class RecipeDetails extends React.Component {
                 <div className='fav-btn'>
                     <button onClick={this.addToFav}>{this.state.favBtn}</button>
                     <div>
-                        Save to Recipe List
+                        {this.state.message}
                     </div>
                 </div>
 
-                <div className='message'>
-                     {this.state.message}
-                </div>
 
                 <div className='header'>
                     <h2>{this.state.result.title}</h2>
@@ -100,7 +97,7 @@ class RecipeDetails extends React.Component {
                             <i class="fas fa-dollar-sign"></i> <br/>
                         </div>
                         <div>
-                            ${this.state.result.pricePerServing} per serving
+                            ${this.state.result.pricePerServing / 10} per serving
                         </div>
                     </div>
                     

@@ -1,0 +1,36 @@
+.faveList{
+    display: flex;
+    margin: 35px;
+}
+.fave-container{
+    
+    width: 50%;
+    text-align: center;
+}
+.fave-container a{
+    text-decoration: none;   
+}
+.fave-container button{
+    cursor: pointer;
+    background: #fff
+}
+.fave-container button:hover{
+    background: #02a388;
+}
+.title{
+    color: #fff;
+    margin: 10px;
+}
+.fave-node{
+    text-align: center;
+    
+    width: 100%;
+}
+.fave-node:hover>.title{
+    color: orange;
+}
+.fave-node img{
+    margin: 10px;
+    height: 240px;
+    width: 320px;
+}

@@ -26,11 +26,11 @@
 }
 .search-box:hover > .search-input
 {
-    width: 240px;
+    width: 480px;
     padding: 0 6px;
 }
 .search-input:focus{
-    width: 240px;
+    width: 480px;
     padding: 0 6px;
 }
 .search-box:hover > .search-btn{

@@ -5,7 +5,8 @@
     left: 0;
     background: white;
     height: 56px;
-    border-bottom: 1px solid black
+    border-bottom: 1px solid black;
+    z-index: 200;
 }
 
 .toolbar__navigation{
@@ -39,9 +40,14 @@
     color: black;
     text-decoration: none
 }
-
-.toolbar__navigation-items a:hover, 
-.toolbar__navigation-items a:active{
+.toolbar__navigation-items a:hover{
+    color: #02a388;
+    cursor: pointer;
+}
+.toolbar__navigation-items .link:hover{
+    color: #02a388
+}
+.toolbar__navigation-items .link-active{
     color: #02a388
 }
 

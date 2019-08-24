@@ -65,3 +65,7 @@ body{
     cursor: pointer;
     border-radius: 5px
 }
+.box form p{
+    color: red;
+    animation-iteration-count: 5
+}

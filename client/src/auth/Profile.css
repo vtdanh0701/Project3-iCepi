@@ -1,0 +1,105 @@
+.profile-btn{
+    background: transparent;
+    border: none; 
+    outline: none; 
+    color: #fff;
+    background: #03a9f4;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 30%;
+    margin: 2em;
+    position: relative;
+    left: 25%;
+    transition: .5s ease-in-out ;
+}
+.btn:hover{
+    background: #02a388
+}
+.profile-about, .profile-edit{
+    width: 50%;
+    margin: 35px;
+}
+
+.profile-container{
+    background: rgba(0,0,0,.8);
+    position: absolute;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    color: #fff;
+    z-index: -1;
+}
+
+.profile-container nav{
+    border-bottom: 2px solid #02a388;
+    width: 50%;
+    padding: 5px;
+    margin: 35px 35px;
+}
+.profile-container a{
+    margin: 1em;
+    font-weight: 700;
+    padding: 5px;
+}
+.profile-container .nav-link-active{
+    border-bottom: 3px solid #fff;
+}
+.profile-container nav a:hover{
+    color: #02a388;
+    cursor: pointer;
+}
+/* .profile-container-content{
+    background: rgba(24, 55, 140, .8);
+    width: 40%;
+    left: 10;
+   
+} */
+
+.profile-about .node{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+     
+}
+.profile-container .node div{
+    width: 40%;
+    margin-right: 15px;
+    color: #fff;
+}
+.profile-edit form{
+    margin: 15px 0;
+    font-size: 1em;
+    display: flex; 
+    width: 100%;
+    flex-direction: column;  
+}
+.profile-edit i{
+    color: #02a388
+}
+.profile-edit i span{
+    font-family:  "Helvetica Neue", sans-serif;
+    color: #02a388;
+}
+.profile-edit .inputbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+.profile-edit .inputbox label{
+    font-weight: 700;
+}
+.profile-edit form .inputbox input{
+    background: transparent;
+    color: #fff;
+    outline: none;
+    font-size: 1em;
+    border: none;
+    width: 40%;
+    right: 10px;
+    border-bottom: 1px solid #fff;
+}

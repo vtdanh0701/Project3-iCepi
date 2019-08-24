@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom'
 import './Form.css'
-
+import '../Animate.css'
 class Signup extends React.Component{
     constructor(props){
         super(props)
@@ -36,6 +36,7 @@ class Signup extends React.Component{
                     name: '',
                     email: '',
                     password: '',
+                    address: '',
                     message: res.data.message
                 })
             } else {
@@ -51,6 +52,7 @@ class Signup extends React.Component{
     }
 
     render(){
+        let message = <p className='animated flash'>{this.state.message}</p>
         return(
             <body>
                 <div className='box'>
@@ -81,6 +83,7 @@ class Signup extends React.Component{
                             <label>Address</label>
                         </div>
                         <input type="submit" value="Sign Up"/>
+                        {message}
                     </form>
                 </div>
             </body>

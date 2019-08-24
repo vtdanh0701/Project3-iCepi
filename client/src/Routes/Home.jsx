@@ -122,7 +122,7 @@ class Home extends React.Component { //component use state
                 <div className='container' style={searchBarStyle}>
                     <h3>Click here to search for your recipe</h3>
                     <div className='search-box'>
-                        <input onChange={this.searchInputBox} className='search-input' type="text" name='' required=' ' placeholder="Type to search"/>
+                        <input onChange={this.searchInputBox} className='search-input' type="text" name='' required=' ' placeholder="Type to search...(e.g: pizza, zucchini, pizza...)"/>
                         <a onClick={this.searchRecipeClick} className='search-btn' href='#'>
                             <i className='fas fa-search'></i>
                         </a>    

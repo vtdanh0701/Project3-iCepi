@@ -74,6 +74,7 @@ class Login extends React.Component{
                             <label>Password</label>
                         </div>
                         <input type="submit" value="Login"/>
+                        <p className='animated flash'>{this.state.message}</p>
                     </form>
                 </div>
             </body>

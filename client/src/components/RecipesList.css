@@ -1,12 +1,16 @@
-.listing-container{
-    background:url('../public/background-search.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+
+.listing-backdrop{
+    background: rgba(0, 0, 0, .8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .recipe__container{
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+
 }
 
 .recipes__items{
@@ -14,12 +18,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 1 0 21%; 
-    margin: 5px;
-    width: 20%;
-    transition: .3s;
-    box-shadow: 2px 3px 6px lightgrey;
-    background: white;
+    flex: 0 1 21%;
+    margin: 15px 12px;
+    width: 25%;
+    transition: .3s ease-in-out;
+    position: relative;
 }
 .recipes__items:hover{
     transform: scale(1.1)
@@ -27,14 +30,14 @@
 .recipe-link{
     text-decoration: none;
     text-align: center;
-    color: black;
+    color: #fefefe;
     margin-top: 10px;
     font-weight: 700;
 }
 .image{
     margin-top: 10px;
-    width: 250px;
-    height: 250px;
+    width: 80%;
+    height: 80%;
     object-fit: cover;  
 }
 
@@ -67,7 +70,7 @@
 }
 .fa-chevron-right,.fa-chevron-left{
     font-size: 55px;
-    color: lightgrey;
+    color: #fefefe;
     transition: .3s
 }
 .fa-chevron-right:hover,.fa-chevron-left:hover{
@@ -75,19 +78,29 @@
     transform: scale(1.5)
 }
 .new-search-box{
+    width: 40%;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    width: 100%;
-    margin-top: 20px;
-    
+    display: flex;
+    margin-top: 15px;
+    background: #fefefe;
 }
 .new-search-input{
-    padding: 0;
+    padding: 5px;
     color:black;
+    outline: none;
+    border: none;
+    left: 10%;
     font-size: 16px;
-    line-height: 20px;
-    width: 240px;
+    line-height: 30px;
+    width: 85%;
+    background: transparent;
     font-weight: bold;
 }
 .new-search-btn > i{
-    font-size: 20px
+    font-size: 20px;
+    color: #333;
+    margin-left: 5px;
 }

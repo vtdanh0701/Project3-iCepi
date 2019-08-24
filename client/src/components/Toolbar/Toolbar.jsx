@@ -2,8 +2,8 @@ import React from 'react';
 import './Toolbar.css';
 import '../SideDrawer/DrawerToggleButton'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
-import {Link} from 'react-router-dom'
-import UserFavList from '../../auth/UserFavList';
+import {NavLink, Link} from 'react-router-dom'
+
 
 
 const Toolbar = (props) => {
@@ -15,15 +15,14 @@ const Toolbar = (props) => {
         content =(
             <ul>
                     <a onClick={props.handleLogOut}>Log Out</a>
-                    {/* <button onClick={props.handleLogOut}>Log Out</button> */}
-                    <li><Link to={url}>Profile</Link></li>
+                    <li><NavLink className='link' to={url}>Profile</NavLink></li>
             </ul>
         )
     } else{
         content = (
             <ul>
-                <li><Link to='/signup'>Sign Up</Link></li>
-                <li><Link to='/login'>Login</Link></li>
+                <li><NavLink className='link' activeClassName='link-active' exact to='/signup'>Sign Up</NavLink></li>
+                <li><NavLink className='link' activeClassName='link-active' exact to='/login'>Login</NavLink></li>
             </ul>
         )
     }
