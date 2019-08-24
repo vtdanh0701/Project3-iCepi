@@ -41,7 +41,7 @@ componentDidMount(){
 render(){
     var favLists = this.state.favLists
     var favItem = []
-    if(favItem.length === 0){
+    if(favLists.length === 0){
         favItem = "You don't have any recipe yet"
     }else{
         for(var i = 0; i< favLists.length; i++){
