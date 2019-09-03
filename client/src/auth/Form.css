@@ -3,6 +3,7 @@ body{
     padding: 0;
     background: url(../public/homebackground.jpg);
     background-size: cover;
+    
 }
 .box{
     position: absolute;
@@ -68,4 +69,14 @@ body{
 .box form p{
     color: red;
     animation-iteration-count: 5
+}
+@media screen and (max-width: 770px){
+    body{
+        background: url(../public/homebackground.jpg);
+        background-size: 400px 740px;
+        background-repeat: no-repeat;
+    }
+    .box{
+       width: 100%;
+    }
 }

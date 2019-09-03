@@ -9,7 +9,7 @@ const SideDrawer = props => {
     var content;
     if(user){
         content =(
-            <ul>
+            <ul onClick={props.drawerToggleClickHandler}>
                     <a onClick={props.handleLogOut}>Log Out</a>
                     <div className= 'crossline'><hr/></div> 
 
@@ -19,7 +19,7 @@ const SideDrawer = props => {
         )
     } else{
         content = (
-            <ul>
+            <ul onClick={props.drawerToggleClickHandler}>
                 <li><Link to='/signup'>Sign Up</Link></li> 
                 <div className= 'crossline'><hr/></div> 
                 <li><Link to='/login'>Login</Link></li>

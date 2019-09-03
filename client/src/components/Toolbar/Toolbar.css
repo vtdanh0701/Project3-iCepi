@@ -56,6 +56,6 @@
         display: none
     }
     .spacer__logo{
-        flex: 1;
+        flex: .65;
     }
 }
