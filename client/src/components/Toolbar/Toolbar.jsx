@@ -29,12 +29,12 @@ const Toolbar = (props) => {
     return(
     <header  className='toolbar'>
         <nav className='toolbar__navigation'>
-            <div>
+            <div className='toggle-button'>
                 <DrawerToggleButton click={props.drawerToggleClickHandler}/>
             </div>
-            <div className='spacer__logo'></div>
+            
             <div className='toolbar__logo'><Link to='/'>iCePi</Link></div>
-            <div className='spacer'></div>
+            
             <div className='toolbar__navigation-items'>
                 {content}
             </div>

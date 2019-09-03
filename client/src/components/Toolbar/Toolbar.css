@@ -7,6 +7,8 @@
     height: 56px;
     border-bottom: 1px solid black;
     z-index: 200;
+    display: flex;
+    justify-content: center;
 }
 
 .toolbar__navigation{
@@ -14,6 +16,10 @@
     height: 100%;
     align-items: center;
     padding: 0 1rem;
+}
+.toggle-button{
+    position: absolute;
+    left: 0;
 }
 .toolbar__logo{
     margin-left: 1rem;
@@ -24,7 +30,8 @@
     font-size: 2rem;
 }
 .spacer{
-    flex: 1;
+    
+    border: 1px solid red;
 }
 
 .toolbar__navigation-items ul{
@@ -32,6 +39,8 @@
     margin: 0;
     padding: 0;
     display: flex;
+    position: absolute;
+    right: 25px;
 }
 .toolbar__navigation-items li{
     padding: 0 0.5rem
@@ -51,11 +60,20 @@
     color: #02a388
 }
 
-@media(max-width: 700px){
+@media(max-width: 770px){
     .toolbar__navigation-items{
         display: none
     }
     .spacer__logo{
-        flex: .65;
+        width: 40%;
+        border: 1px solid red;
     }
+    .toolbar{
+        justify-content: space-evenly;
+    }
+    .spacer{
+        width: 40%;
+       
+    }
+    
 }

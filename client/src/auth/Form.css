@@ -3,7 +3,8 @@ body{
     padding: 0;
     background: url(../public/homebackground.jpg);
     background-size: cover;
-    
+    background-repeat: no-repeat;
+    height: 100vh;
 }
 .box{
     position: absolute;
@@ -71,11 +72,7 @@ body{
     animation-iteration-count: 5
 }
 @media screen and (max-width: 770px){
-    body{
-        background: url(../public/homebackground.jpg);
-        background-size: 400px 740px;
-        background-repeat: no-repeat;
-    }
+   
     .box{
        width: 100%;
     }

@@ -18,7 +18,7 @@
     background: black;
 }
 
-@media(min-width: 700px){
+@media(min-width: 775px){
     .toggle-button{
         display: none
     }
