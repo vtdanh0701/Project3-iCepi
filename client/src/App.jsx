@@ -123,7 +123,7 @@ class App extends Component {
         <div>
           <div style={{height: '100%'}}>
             <Toolbar user={this.state.user} handleLogOut={this.handleLogOut} liftToken={this.liftToken} drawerToggleClickHandler={this.drawerToggleClickHandler}/>
-            <SideDrawer drawerToggleClickHandler={this.drawerToggleClickHandler}  user={this.state.user} show={this.state.sideDrawerOpen}/>
+            <SideDrawer drawerToggleClickHandler={this.drawerToggleClickHandler}  user={this.state.user} show={this.state.sideDrawerOpen} handleLogOut={this.handleLogOut} />
             {backdrop}
             <main style={{marginTop: '55px'}}>
             </main>
